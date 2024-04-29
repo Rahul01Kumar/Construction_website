@@ -36,7 +36,6 @@ app.get('/index.html', (req, res) => {
 });
 
 // Handle form submission
-app.post('/submit', (req, res) => {
 app.post('/submit', async(req, res) => {
   try {
     const { name, email, message } = req.body;
