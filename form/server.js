@@ -37,16 +37,15 @@ app.get('/index.html', (req, res) => {
 
 // Handle form submission
 app.post('/submit', (req, res) => {
-  const { name, email, message } = req.body;
-  const newUser = new User({ name, email, message });
-  newUser.save((error) => {
-    if (error) {
-      console.error('Error saving data:', error);
-      res.status(500).send('Error saving data: ' + error.message);
-    } else {
-      res.send('Data saved successfully!');
-    }
-  });
+app.post('/submit', async(req, res) => {
+  try {
+    const { name, email, message } = req.body;
+    const newUser = new User({ name, email, message });
+    await newUser.save();
+    res.send('Data saved successfully!');
+  } catch (error) {
+    res.status(500).send('Error saving data.');
+  }
 });
 
 
